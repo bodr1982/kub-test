@@ -43,8 +43,8 @@ spec:
             value: "test"
           image: mysql
           ports:
-        - name: mysql
-          containerPort: 3306
+          - name: mysql
+            containerPort: 3306
         - name: adminer
           image: adminer
           #для контейнера в Pod'е зарезервировано 128 Мб памяти и выставлено 256 Мб ограничения.
