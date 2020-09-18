@@ -32,10 +32,22 @@ spec:
       containers:
       - name: npmapp
         image: bodr1982/npmtest
+        #для контейнера в Pod'е зарезервировано 128 Мб памяти и выставлено 256 Мб ограничения.
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "256Mi"
         ports:
         - containerPort: 80
           name: npmapp
       - name: mysql
+        #для контейнера в Pod'е зарезервировано 128 Мб памяти и выставлено 256 Мб ограничения.
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "256Mi"
         env:
         - name: "MYSQL_USER"
           value: "root"
@@ -45,11 +57,16 @@ spec:
           value: "test"
         image: mysql
         ports:
-        - name: mysql
-          containerPort: 3306
-        resources: {}
+      - name: mysql
+        containerPort: 3306
       - name: adminer
         image: adminer
+        #для контейнера в Pod'е зарезервировано 128 Мб памяти и выставлено 256 Мб ограничения.
+        resources:
+          requests:
+            memory: "128Mi"
+          limits:
+            memory: "256Mi"
         ports:
         - containerPort: 8080
           name: adminer

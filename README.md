@@ -39,3 +39,5 @@ https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
 
 Для развертывания контейнеров в кубернетис предпологается использовать helm
+
+Для контейнера в Pod'е зарезервировано 128 Мб памяти и выставлено 256 Мб ограничения
