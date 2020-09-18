@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: npmapp
+  labels:
+    app: npmapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: npmapp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: npmapp
+    spec:
+      containers:
+        - name: npmapp
+          image: bodr1982/npmtest
+          ports:
+          - containerPort: 80
+            name: npmapp
+        - name: mysql
+          env:
+          - name: "MYSQL_USER"
+            value: "root"
+          - name: "MYSQL_ROOT_PASSWORD"
+            value: "12345a"
+          - name: "MYSQL_DATABASE"
+            value: "test"
+          image: mysql
+          ports:
+          - name: mysql
+            containerPort: 3306
+          resources: {}
+        - name: adminer
+          image: adminer
+          ports:
+          - containerPort: 8080
+            name: adminer
+      imagePullSecrets:
+      - name: regcred
+      restartPolicy: Always
+status: {}
